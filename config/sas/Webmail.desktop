@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Horde
 Encoding=UTF-8
-Icon=email
+Icon=yast-mail-server
 Type=Link
-URL=http://www.gymsas.de/webmail
+URL=http://horde.gymsas.de/

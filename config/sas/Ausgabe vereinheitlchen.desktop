@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[de_DE]=Vereinheitlicht die Ausgaben von VGA und HDMI Ausgabe
+Comment=Vereinheitlicht die Ausgaben von VGA und HDMI Ausgabe
+Exec=/home/software/linux/scripts/ausgabe
+GenericName[de_DE]=Ausgabe vereinheitlichen
+GenericName=Ausgabe vereinheitlichen
+Icon=preferences-desktop-display
+MimeType=
+Name[de_DE]=Ausgabe vereinheitlichen
+Name=Ausgabe vereinheitlichen
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

@@ -664,6 +664,10 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/sas/smarttech-notebook.desktop
 /usr/share/schule-kde/schule-kde-sas.menu
 /usr/share/%{name}/plasma-updates/sas
+/usr/share/wallpapers/SAS_Canvas
+/usr/share/wallpapers/SAS_Chalk
+/usr/share/wallpapers/SAS_Glow
+/usr/share/wallpapers/SAS_Ground
 
 %files sas-netbook
 %defattr(644,root,root,0755)

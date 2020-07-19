@@ -1,0 +1,86 @@
+#! /bin/sh
+set -e
+
+# grub-mkconfig helper script.
+# Copyright (C) 2013-2017 Frank Schütte fschuett@gymhim.de
+# GPL
+machine=`uname -m`
+if [ "x$machine" = "xx86_64" ]; then
+  _64=64
+fi
+
+if [ -d /sys/firmware/efi ] && [ "x${GRUB_USE_LINUXEFI}" = "xtrue" ]; then
+  efi=efi
+fi
+
+cat <<EOF
+menuentry 'Gymhim Linux' --unrestricted --class 'gymhim' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-c8fd992b-bce9-44b3-a84e-66149609976a' {
+        load_video
+        set gfxpayload=keep
+        insmod gzio
+        insmod part_msdos
+        insmod ext2
+        set root='(hd0,1)'
+        echo    'Loading Gymhim Linux ...'
+        linux${efi}   /boot/vmlinuz root=${GRUB_DEVICE} instmode=http resume=${GRUB_DEVICE:0:-1}2 splash=silent quiet showopts irqpoll crashkernel=
+        echo    'Loading initial ramdisk ...'
+        initrd${efi}  /boot/initrd
+}
+menuentry 'Gymhim Linux (ohne resume)' --unrestricted --class 'gymhim' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-c8fd992b-bce9-44b3-a84e-66149609976a' {
+        load_video
+        set gfxpayload=keep
+        insmod gzio
+        insmod part_msdos
+        insmod ext2
+        set root='(hd0,1)'
+        echo    'Loading Gymhim Linux(ohne resume) ...'
+        linux${efi}   /boot/vmlinuz root=${GRUB_DEVICE} instmode=http noresume splash=silent quiet showopts irqpoll crashkernel=
+        echo    'Loading initial ramdisk ...'
+        initrd${efi}  /boot/initrd
+}
+menuentry 'Klassenarbeit' --class 'gymhim' --unrestricted --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-c8fd992b-bce9-44b3-a84e-66149609976a' {
+        load_video
+        set gfxpayload=keep
+        insmod gzio
+        insmod part_msdos
+        insmod ext2
+        set root='(hd0,1)'
+        echo    'Loading Klassenarbeit ...'
+        linux${efi}   /boot/vmlinuz root=${GRUB_DEVICE} instmode=http noresume splash=silent quiet showopts irqpoll klassenarbeit=1 crashkernel=
+        echo    'Loading initial ramdisk ...'
+        initrd${efi}  /boot/initrd
+}
+menuentry 'LINBO LOCAL' --class 'gymhim' --unrestricted --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-c8fd992b-bce9-44b3-a84e-66149609976a' {
+        load_video
+        set gfxpayload=keep
+        insmod gzio
+        insmod part_msdos
+        insmod ext2
+        set root='hd0,msdos1'
+        if [ x$feature_platform_search_hint = xy ]; then
+          search --no-floppy --file --set=root --hint-bios=hd0,msdos1 --hint-efi=hd0,msdos1 --hint-baremetal=ahci0,msdos1 --hint='hd0,msdos1' /linbofs${_64}.lz
+        else
+          search --no-floppy --file --set=root /linbofs${_64}.lz
+        fi
+        echo    'Loading LINBO${_64} ...'
+        linux${efi}   /linbo${_64} quiet
+        echo    'Loading initial ramdisk ...'
+        initrd${efi}  /linbofs${_64}.lz
+}
+menuentry 'Installation vom Netzwerk' --class 'gymhim' --unrestricted --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-c8fd992b-bce9-44b3-a84e-66149609976a' {
+        load_video
+        set gfxpayload=keep
+        insmod gzio
+        insmod part_msdos
+        insmod ext2
+        set root='tftp'
+        echo    'Loading LINBO${_64} ...'
+        linux${efi}   /linbo${_64} linbocmd=format,initcache,sync:1,start:1
+        echo    'Loading initial ramdisk ...'
+        initrd${efi}  /linbofs${_64}.lz
+}
+
+set superusers=root
+password_pbkdf2 root grub.pbkdf2.sha512.10000.53BF6352383EA7C14C6CFD7D3BCDEB9E4F14453CE958B6E76B5F884BEBE0744F2D35BFEAC8651203FF73113E4A09207865BBB76C54F9C7E25790B6B18EDA6396.EFB522133330845858D570A68B427A4FD699BDF9BE22D4D8E310C60ED05F5FB354B379807834EE86EC3FFB1397C821FDD2B72467F8BE97CDAD6F904AFE66218A
+
+EOF

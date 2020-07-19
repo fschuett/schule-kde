@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Utilities;
+Encoding=UTF-8
+Name=xrandr-extend
+Exec=/usr/bin/xrandr-script.sh extend
+Type=Application
+GenericName=xrandr-extend
+Terminal=true
+Icon=xrandr-extend
+X-KDE-StartupNotify=false

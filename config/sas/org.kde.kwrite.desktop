@@ -1,0 +1,16 @@
+[Desktop Entry]
+X-SuSE-translate=true
+GenericName=Text Editor
+Name=KWrite
+Comment=KDE Text Editor
+MimeType=text/plain;
+Exec=kwrite %U
+StartupNotify=true
+Icon=kwrite
+X-DocPath=kwrite/index.html
+Type=Application
+Terminal=false
+InitialPreference=8
+X-DBUS-StartupType=Multi
+X-DBUS-ServiceName=org.kde.kwrite
+Categories=Qt;KDE;Utility;TextEditor;

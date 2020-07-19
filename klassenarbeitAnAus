@@ -1,0 +1,128 @@
+#!/bin/sh
+# Ein-/Ausschalten des Klassenarbeitsmodus
+KLASSENARBEIT=`grep -q 'klassenarbeit=1' /proc/cmdline && echo true || echo false`
+WLAN=/etc/modprobe.d/99-blacklist-wlan.conf
+LANDRIVERS=/lib/modules/`uname -r`/kernel/drivers/net
+BACKUP=/root/`uname -r`
+SCHULEDIR=/usr/share/schule-kde
+PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
+PRIVSDIR=/etc/polkit-default-privs.d
+PRIVS=klassenarbeit
+
+echo "Klassenarbeit=$KLASSENARBEIT" >/tmp/klassenarbeit.txt
+
+if [ "x$KLASSENARBEIT" != "xtrue" ]; then
+    rm -f $WLAN
+    rm -f "$PRIVSDIR/$PRIVS"
+
+    [ -x /sbin/set_polkit_default_privs ] && /sbin/set_polkit_default_privs
+
+    if [ ! -d $LANDRIVERS ]; then
+        mv -f $BACKUP $LANDRIVERS;
+    fi
+    if grep -q klassenarbeit /etc/passwd; then
+        GLOBIGNORE=/ userdel -r klassenarbeit
+    fi
+    if grep -q 'schueler:!' /etc/shadow; then
+        passwd schueler -u
+    fi
+    if grep -q 'DISPLAYMANAGER_AUTOLOGIN="klassenarbeit"' /etc/sysconfig/displaymanager; then
+        sed -i 's#DISPLAYMANAGER_AUTOLOGIN="klassenarbeit"#DISPLAYMANAGER_AUTOLOGIN="schueler"#' /etc/sysconfig/displaymanager
+    fi
+    # plasma-updates
+    d=$SCHULEDIR/plasma-updates/klassenarbeit
+    for p in $(find $d -name '*.js'); do
+	f=$(basename $p)
+	rm -f $PLASMADIR/$f
+    done;
+    d=$SCHULEDIR/plasma-updates/schule
+    for p in $(find -L $d -name '*.js'); do
+	f=$(basename $p)
+	rm -f $PLASMADIR/$f
+	ln -sf $p $PLASMADIR/$f
+    done;
+    exit 0;
+fi
+
+# WLAN abschalten
+cat <<EOF >$WLAN
+blacklist b43          #Compaq Mini
+blacklist ath9k        #PackardBell, EeePc
+blacklist rtl8192se    #Scieneo
+
+EOF
+
+# Rechte beschneiden
+mkdir -p "$PRIVSDIR"
+cat <<EOF >"$PRIVSDIR/$PRIVS"
+# Für eine Klassenarbeit sind die folgenden Rechte eingeschränkt.
+#
+# udisks.
+#
+org.freedesktop.udisks.filesystem-mount                auth_admin:auth_admin:no
+org.freedesktop.udisks.change                          auth_admin:auth_admin:no
+org.freedesktop.udisks.luks-unlock                     auth_admin:auth_admin:no
+#
+# udisks2 (bnc#742751)
+#
+org.freedesktop.udisks2.filesystem-mount                auth_admin:auth_admin:no
+org.freedesktop.udisks2.encrypted-unlock                auth_admin:auth_admin:no
+org.freedesktop.udisks2.encrypted-change-passphrase     auth_admin:auth_admin:no
+org.freedesktop.udisks2.loop-setup                      auth_admin:auth_admin:no
+org.freedesktop.udisks2.modify-device                   auth_admin:auth_admin:no
+org.freedesktop.udisks2.ata-smart-update                auth_admin:auth_admin:no
+# (bnc#761872)
+org.freedesktop.udisks2.eject-media                     auth_admin:auth_admin:no
+
+EOF
+
+[ -x /sbin/set_polkit_default_privs ] && /sbin/set_polkit_default_privs
+
+# clean common writable dirs
+for f in /tmp /var/tmp /var/spool/mail; do
+(
+  cd $f;
+  for ff in `/usr/bin/find . -not \( -iname "." -or -iname ".." \)`; do
+    if [ -d "$ff" ]; then
+      rm -rf "$ff"
+    else
+      rm -f "$ff"
+    fi
+  done;
+)
+done;
+
+if [ -d $LANDRIVERS ]; then
+    rm -rf $BACKUP
+    mv -f $LANDRIVERS $BACKUP
+fi
+# Benutzer Klassenarbeit erstellen
+if grep -q klassenarbeit /etc/passwd; then
+    GLOBIGNORE=/ userdel -r klassenarbeit
+fi
+if grep -vq klassenarbeit /etc/passwd; then
+    useradd -m --gid users --groups wine,audio,video --password cheix8Xo --home /home/klassenarbeit klassenarbeit
+fi
+if grep -vq 'schueler:!' /etc/shadow; then
+    passwd schueler -l
+fi
+
+# Autologin Klassenarbeitsbenutzer
+if grep -q 'DISPLAYMANAGER_AUTOLOGIN="schueler"' /etc/sysconfig/displaymanager; then
+    sed -i 's#DISPLAYMANAGER_AUTOLOGIN="schueler"#DISPLAYMANAGER_AUTOLOGIN="klassenarbeit"#' /etc/sysconfig/displaymanager
+fi
+
+# plasma-updates klassenarbeit
+d=$SCHULEDIR/plasma-updates/schule
+for p in $(find -L $d -name '*.js'); do
+    f=$(basename $p)
+    rm -f $PLASMADIR/$f
+done;
+d=$SCHULEDIR/plasma-updates/klassenarbeit
+for p in $(find $d -name '*.js'); do
+    f=$(basename $p)
+    rm -f $PLASMADIR/$f
+    ln -sf $p $PLASMADIR/$f
+done;
+
+exit 0

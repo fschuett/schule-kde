@@ -1,0 +1,23 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment[de]=Arbeitsfläche neustarten
+Comment=restart plasma
+Exec=/usr/bin/restart-plasma
+GenericName[de]=Plasma neustarten
+GenericName=restart Plasma
+Icon=yast-restore
+MimeType=
+Name[de]=Arbeitsfläche neustarten
+Name=restart Plasma
+Path=/usr/bin/
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-SuSE-translate=true
+Categories=Utility;X-Himmelsthür;X-Zubehör;X-Schulfächer;X-Allgemein;
+X-Desktop-File-Install-Version=0.16

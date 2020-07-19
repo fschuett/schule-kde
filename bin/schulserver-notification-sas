@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Frank Schütte 2012-2017
+# Sucht die Datei ~/.quota.txt und erzeugt das 
+# knotify-Ereignis quota-notification aus
+# knotifications5/schulserver.notifyrc
+# mit dem python skript knotify.py
+#
+[ -n "${HOME}" ] || exit 1
+[ -e "${HOME}" ] || exit 2
+[ -e "/usr/bin/knotify.py" ] || exit 3
+
+# generate quota event
+if [ -e "${HOME}/.quota.txt" ]; then
+        /usr/bin/knotify.py schulserver quota-notification "Quota-Benachrichtigung" "<font color=\"red\">\
+Ihr Plattenplatz ist voll!</font><br><a href=\"file://${HOME}/.quota.txt\" >Inhalt</a><br>\
+<a href=\"https://sankt-ansgar.dyndns.org/dokuwiki/doku.php?id=plattenplatz\">Hinweise</a>"
+fi
+
+exit 0
+

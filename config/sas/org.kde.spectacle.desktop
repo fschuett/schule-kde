@@ -1,0 +1,30 @@
+[Desktop Entry]
+X-SuSE-translate=true
+GenericName=Screenshot Capture Utility
+Name=Spectacle
+Categories=Utility;X-SuSE-DesktopUtility;
+Exec=spectacle
+Icon=spectacle
+Type=Application
+Terminal=false
+StartupNotify=false
+Actions=FullScreenScreenShot;CurrentMonitorScreenShot;ActiveWindowScreenShot;RectangularRegionScreenShot;
+X-DBUS-StartupType=Multi
+X-DBUS-ServiceName=org.kde.Spectacle
+
+[Desktop Action FullScreenScreenShot]
+Name=Capture Entire Desktop
+Exec=spectacle -f
+
+[Desktop Action CurrentMonitorScreenShot]
+Name=Capture Current Monitor
+Exec=spectacle -m
+
+[Desktop Action ActiveWindowScreenShot]
+Name=Capture Active Window
+Exec=spectacle -a
+
+[Desktop Action RectangularRegionScreenShot]
+Name=Capture Rectangular Region
+Exec=spectacle -r
+

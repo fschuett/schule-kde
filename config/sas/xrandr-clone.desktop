@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Utilities;
+Encoding=UTF-8
+Name=xrandr-clone
+Exec=/usr/bin/xrandr-script.sh clone
+Type=Application
+GenericName=xrandr-clone
+Terminal=true
+Icon=xrandr-clone
+X-KDE-StartupNotify=false

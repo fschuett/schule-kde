@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# Start a file as if it were double-clicked in windows explorer.
+#
+# This is intended as a wrapper for linux file managers, and it expects
+# a unix path.
+#
+# Copyright 2007 Vincent Povirk
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+#
+
+usage()
+{
+    cat <<EOF
+usage: winestartfile FILENAME
+EOF
+    exit 2
+}
+
+if test $# -ne 1 ; then
+    usage
+fi
+
+# Change to the path containing the file.
+cd "$(dirname "$1")"
+
+# Determine the full windows path of the file.
+windowspath="$(winepath --windows "$(basename "$1")")"
+
+# Start the file with its full windows path.
+wine start "${windowspath}"
+
+# If wine start failed, show its error message to the user.
+if test $? -ne 0; then
+    if type zenity &>/dev/null; then
+        wine start "${windowspath}"|xargs --null zenity --error --title Wine --text
+    elif type kdialog &>/dev/null; then
+        wine start "${windowspath}"|xargs --null kdialog --title Wine --error
+    elif type xmessage &>/dev/null; then
+        wine start "${windowspath}"|xmessage -file -
+    fi
+fi
+

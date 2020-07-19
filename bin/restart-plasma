@@ -1,0 +1,6 @@
+#!/bin/bash
+kquitapp5 plasmashell
+sleep 5
+plasmashell &
+
+exit 0

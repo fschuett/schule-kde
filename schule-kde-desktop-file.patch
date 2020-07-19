@@ -1,0 +1,240 @@
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/base.desktop schule-kde-5.8/share/applications/himmelsthuer/base.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/base.desktop	2015-03-17 11:56:18.689130529 +0100
++++ schule-kde-5.8/share/applications/himmelsthuer/base.desktop	2015-03-17 12:25:02.390756599 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-base
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/calc.desktop schule-kde-5.8/share/applications/himmelsthuer/calc.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/calc.desktop	2015-03-17 11:56:18.709131895 +0100
++++ schule-kde-5.8/share/applications/himmelsthuer/calc.desktop	2015-03-17 12:25:02.390756599 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-calc
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/draw.desktop schule-kde-5.8/share/applications/himmelsthuer/draw.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/draw.desktop	2015-03-17 11:56:18.753134901 +0100
++++ schule-kde-5.8/share/applications/himmelsthuer/draw.desktop	2015-03-17 12:25:02.390756599 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-draw
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/impress.desktop schule-kde-5.8/share/applications/himmelsthuer/impress.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/impress.desktop	2015-03-17 11:56:18.829140095 +0100
++++ schule-kde-5.8/share/applications/himmelsthuer/impress.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-impress
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/math.desktop schule-kde-5.8/share/applications/himmelsthuer/math.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/math.desktop	2015-03-17 11:56:19.065156220 +0100
++++ schule-kde-5.8/share/applications/himmelsthuer/math.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ NoDisplay=true
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/Reset.desktop schule-kde-5.8/share/applications/himmelsthuer/Reset.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/Reset.desktop	2013-06-04 08:46:06.542305107 +0200
++++ schule-kde-5.8/share/applications/himmelsthuer/Reset.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -19,5 +19,5 @@ X-DBUS-StartupType=
+ X-KDE-SubstituteUID=false
+ X-KDE-Username=
+ X-SuSE-translate=true
+-Categories=Utility;X-Himmelsthür;X-Zubehör;X-Schulfächer;X-Allgemein;X-Desktop;
++Categories=Utility;X-SuSE-DesktopUtility;X-Himmelsthür;X-Zubehör;X-Schulfächer;X-Allgemein;X-Desktop;
+ X-Desktop-File-Install-Version=0.16
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/Reset-Netbook.desktop schule-kde-5.8/share/applications/himmelsthuer/Reset-Netbook.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/Reset-Netbook.desktop	2013-06-04 08:45:52.355946199 +0200
++++ schule-kde-5.8/share/applications/himmelsthuer/Reset-Netbook.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -19,5 +19,5 @@ X-DBUS-StartupType=
+ X-KDE-SubstituteUID=false
+ X-KDE-Username=
+ X-SuSE-translate=true
+-Categories=Utility;X-Himmelsthür;X-Zubehör;X-Schulfächer;X-Allgemein;X-Netbook;
++Categories=Utility;X-SuSE-DesktopUtility;X-Himmelsthür;X-Zubehör;X-Schulfächer;X-Allgemein;X-Netbook;
+ X-Desktop-File-Install-Version=0.16
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/restart-plasma.desktop schule-kde-5.8/share/applications/himmelsthuer/restart-plasma.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/restart-plasma.desktop	2012-07-08 10:17:02.000000000 +0200
++++ schule-kde-5.8/share/applications/himmelsthuer/restart-plasma.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -19,5 +19,5 @@ X-DBUS-StartupType=
+ X-KDE-SubstituteUID=false
+ X-KDE-Username=
+ X-SuSE-translate=true
+-Categories=Utility;X-Himmelsthür;X-Zubehör;X-Schulfächer;X-Allgemein;
++Categories=Utility;X-SuSE-DesktopUtility;X-Himmelsthür;X-Zubehör;X-Schulfächer;X-Allgemein;
+ X-Desktop-File-Install-Version=0.16
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/smarttech-notebook.desktop schule-kde-5.8/share/applications/himmelsthuer/smarttech-notebook.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/smarttech-notebook.desktop	2015-03-17 11:56:19.233167698 +0100
++++ schule-kde-5.8/share/applications/himmelsthuer/smarttech-notebook.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -8,7 +8,7 @@ Comment=SMART Notebook Software
+ Exec="/opt/SMART Technologies/Notebook Software/bin/notebook" %f
+ Icon=SMART_Notebook.png
+ MimeType=application/x-smarttech-notebook;
+-Categories=SMART-Technologies;X-Schulfächer;X-Allgemein;X-Zubehör;X-Himmelsthür;
++Categories=Office;Presentation;X-SMART-Technologies;X-Schulfächer;X-Allgemein;X-Zubehör;X-Himmelsthür;
+ Name[ca]=Programa Notebook
+ Comment[ca]=Programa Notebook
+ Name[de]=Notebook-Software
+diff -pruN schule-kde-5.8.orig/share/applications/himmelsthuer/writer.desktop schule-kde-5.8/share/applications/himmelsthuer/writer.desktop
+--- schule-kde-5.8.orig/share/applications/himmelsthuer/writer.desktop	2015-03-17 11:56:19.309172890 +0100
++++ schule-kde-5.8/share/applications/himmelsthuer/writer.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-writer
+diff -pruN schule-kde-5.8.orig/share/applications/sas/base.desktop schule-kde-5.8/share/applications/sas/base.desktop
+--- schule-kde-5.8.orig/share/applications/sas/base.desktop	2015-03-17 11:56:19.345175350 +0100
++++ schule-kde-5.8/share/applications/sas/base.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-base
+diff -pruN schule-kde-5.8.orig/share/applications/sas/calc.desktop schule-kde-5.8/share/applications/sas/calc.desktop
+--- schule-kde-5.8.orig/share/applications/sas/calc.desktop	2015-03-17 11:56:19.365176716 +0100
++++ schule-kde-5.8/share/applications/sas/calc.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-calc
+diff -pruN schule-kde-5.8.orig/share/applications/sas/draw.desktop schule-kde-5.8/share/applications/sas/draw.desktop
+--- schule-kde-5.8.orig/share/applications/sas/draw.desktop	2015-03-17 11:56:19.409179723 +0100
++++ schule-kde-5.8/share/applications/sas/draw.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-draw
+diff -pruN schule-kde-5.8.orig/share/applications/sas/impress.desktop schule-kde-5.8/share/applications/sas/impress.desktop
+--- schule-kde-5.8.orig/share/applications/sas/impress.desktop	2015-03-17 11:56:19.485184915 +0100
++++ schule-kde-5.8/share/applications/sas/impress.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-impress
+diff -pruN schule-kde-5.8.orig/share/applications/sas/math.desktop schule-kde-5.8/share/applications/sas/math.desktop
+--- schule-kde-5.8.orig/share/applications/sas/math.desktop	2015-03-17 11:56:19.721201042 +0100
++++ schule-kde-5.8/share/applications/sas/math.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ NoDisplay=true
+diff -pruN schule-kde-5.8.orig/share/applications/sas/Reset.desktop schule-kde-5.8/share/applications/sas/Reset.desktop
+--- schule-kde-5.8.orig/share/applications/sas/Reset.desktop	2012-07-08 10:17:25.000000000 +0200
++++ schule-kde-5.8/share/applications/sas/Reset.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -19,5 +19,5 @@ X-DBUS-StartupType=
+ X-KDE-SubstituteUID=false
+ X-KDE-Username=
+ X-SuSE-translate=true
+-Categories=Utility;X-SanktAnsgar;X-Zubehör;X-Schulfächer;X-Allgemein;
++Categories=Utility;X-SuSE-DesktopUtility;X-SanktAnsgar;X-Zubehör;X-Schulfächer;X-Allgemein;
+ X-Desktop-File-Install-Version=0.16
+diff -pruN schule-kde-5.8.orig/share/applications/sas/Reset-Netbook.desktop schule-kde-5.8/share/applications/sas/Reset-Netbook.desktop
+--- schule-kde-5.8.orig/share/applications/sas/Reset-Netbook.desktop	2013-06-04 08:45:52.355946199 +0200
++++ schule-kde-5.8/share/applications/sas/Reset-Netbook.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -19,5 +19,5 @@ X-DBUS-StartupType=
+ X-KDE-SubstituteUID=false
+ X-KDE-Username=
+ X-SuSE-translate=true
+-Categories=Utility;X-SanktAnsgar;X-Zubehör;X-Schulfächer;X-Allgemein;X-Netbook;
++Categories=Utility;X-SuSE-DesktopUtility;X-SanktAnsgar;X-Zubehör;X-Schulfächer;X-Allgemein;X-Netbook;
+ X-Desktop-File-Install-Version=0.16
+diff -pruN schule-kde-5.8.orig/share/applications/sas/restart-plasma.desktop schule-kde-5.8/share/applications/sas/restart-plasma.desktop
+--- schule-kde-5.8.orig/share/applications/sas/restart-plasma.desktop	2012-07-08 10:17:34.000000000 +0200
++++ schule-kde-5.8/share/applications/sas/restart-plasma.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -19,5 +19,5 @@ X-DBUS-StartupType=
+ X-KDE-SubstituteUID=false
+ X-KDE-Username=
+ X-SuSE-translate=true
+-Categories=Utility;X-SanktAnsgar;X-Zubehör;X-Schulfächer;X-Allgemein;
++Categories=Utility;X-SuSE-DesktopUtility;X-SanktAnsgar;X-Zubehör;X-Schulfächer;X-Allgemein;
+ X-Desktop-File-Install-Version=0.16
+diff -pruN schule-kde-5.8.orig/share/applications/sas/smarttech-notebook.desktop schule-kde-5.8/share/applications/sas/smarttech-notebook.desktop
+--- schule-kde-5.8.orig/share/applications/sas/smarttech-notebook.desktop	2015-03-17 11:56:19.893212792 +0100
++++ schule-kde-5.8/share/applications/sas/smarttech-notebook.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -8,7 +8,7 @@ Comment=SMART Notebook Software
+ Exec="/opt/SMART Technologies/Notebook Software/bin/notebook" %f
+ Icon=SMART_Notebook.png
+ MimeType=application/x-smarttech-notebook;
+-Categories=SMART-Technologies;X-Schulfächer;X-Allgemein;X-Zubehör;X-SanktAnsgar;
++Categories=Office;Presentation;X-SMART-Technologies;X-Schulfächer;X-Allgemein;X-Zubehör;X-SanktAnsgar;
+ Name[ca]=Programa Notebook
+ Comment[ca]=Programa Notebook
+ Name[de]=Notebook-Software
+diff -pruN schule-kde-5.8.orig/share/applications/sas/writer.desktop schule-kde-5.8/share/applications/sas/writer.desktop
+--- schule-kde-5.8.orig/share/applications/sas/writer.desktop	2015-03-17 11:56:19.977218532 +0100
++++ schule-kde-5.8/share/applications/sas/writer.desktop	2015-03-17 12:25:02.394756872 +0100
+@@ -16,7 +16,6 @@
+ #   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+ #
+ [Desktop Entry]
+-StartupNotify=true
+ Version=1.0
+ Terminal=false
+ Icon=libreoffice-writer
+diff -up ./share/applications/himmelsthuer/scribus.desktop.orig ./share/applications/himmelsthuer/scribus.desktop
+--- ./share/applications/himmelsthuer/scribus.desktop.orig      2020-07-18 13:58:09.884527650 +0200
++++ ./share/applications/himmelsthuer/scribus.desktop   2020-07-18 13:59:23.760230532 +0200
+@@ -98,7 +98,7 @@ Exec=scribus %f
+ Icon=scribus
+ Terminal=false
+ MimeType=application/vnd.scribus;
+-Categories=Qt;Office;WordProcessor;X-Schreibprogramme;X-Himmelsthür;
++Categories=Qt;Office;Presentation;WordProcessor;X-Schreibprogramme;X-Himmelsthür;
+ StartupWMClass=scribus
+ DocPath=scribus
+ StartupNotify=false
+diff -up ./share/applications/sas/scribus.desktop.orig ./share/applications/sas/scribus.desktop
+--- ./share/applications/sas/scribus.desktop.orig       2020-07-18 13:58:09.884527650 +0200
++++ ./share/applications/sas/scribus.desktop    2020-07-18 14:00:00.088084422 +0200
+@@ -98,7 +98,7 @@ Exec=scribus %f
+ Icon=scribus
+ Terminal=false
+ MimeType=application/vnd.scribus;
+-Categories=Qt;Office;WordProcessor;X-Schreibprogramme;X-SanktAnsgar;
++Categories=Qt;Office;Presentation;WordProcessor;X-Schreibprogramme;X-SanktAnsgar;
+ StartupWMClass=scribus
+ DocPath=scribus
+ StartupNotify=false

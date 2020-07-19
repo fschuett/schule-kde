@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment[de]=Einstellungen zurücksetzen
+Comment=Einstellungen zurücksetzen
+Exec=/usr/bin/reset.sh
+GenericName[de]=Reset
+GenericName=Reset
+Icon=yast-restore
+MimeType=
+Name[de]=Reset
+Name=Reset
+Path=/usr/bin/
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-SuSE-translate=true

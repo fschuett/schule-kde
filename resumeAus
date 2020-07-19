@@ -1,0 +1,67 @@
+#!/bin/sh -x
+# Resume-Partition formatieren.
+NORESUME=`grep -q 'noresume' /proc/cmdline && echo true || echo false`
+FSTAB=/etc/fstab
+SWAPDEV=
+LABEL=
+
+echo "NORESUME=$NORESUME" >/root/resumeAus.txt
+
+if [ "x$NORESUME" != "xtrue" ]; then
+    exit 0
+fi
+
+print_device(){
+    local LABEL=${1#*=}
+    if [ -n "$LABEL" ]; then
+      DEV="$(blkid | grep LABEL=\"$LABEL\" | cut -d\: -f1)"
+      echo "$DEV"
+      return
+    fi
+    echo ""
+}
+
+print_device_label(){
+    local LABEL=
+    if [ -n "$1" ]; then
+      LABEL="$(blkid | grep ^$1 | tr ' ' "\n" | grep ^LABEL= | cut -d\= -f2 | sed 's@"@@g' )"
+      echo $LABEL
+      return
+    fi
+    echo ""
+    return
+}
+
+SWAPDEV=`cat $FSTAB|while read DEV FS REST; do
+ echo "getestet: $DEV $FS $REST" >>/root/resumeAus.txt
+ if [ "x$FS" = "xswap" ]; then
+  echo "gefunden: $DEV" >>/root/resumeAus.txt
+  if echo "$DEV" | grep -q ^/dev; then
+    echo "$DEV";
+  else
+    LABEL="${DEV#*=}"
+    print_device "$LABEL"
+  fi
+  break;
+ fi
+done`
+
+# Kontrolle
+if [ -n "$SWAPDEV" ]; then
+    AKTFS="$(blkid $SWAPDEV|tr ' ' "\n" | grep ^TYPE=\"swap\" |cut -d\= -f2|sed 's@"@@g')"
+    if [ "x$AKTFS" != "xswap" ]; then
+        SWAPDEV=
+    fi
+fi
+[ -n "$SWAPDEV" -a -z "$LABEL" ] && LABEL="$(print_device_label $SWAPDEV)"
+
+# OK
+echo "SWAPDEV=$SWAPDEV AKTFS=$AKTFS LABEL=$LABEL" >>/root/resumeAus.txt
+if [ -n "$SWAPDEV" ]; then
+    OPTS=
+    [ -n "$LABEL" ] && OPTS="-L $LABEL"
+    mkswap $OPTS $SWAPDEV >>/root/resumeAus.txt
+    echo "Ich formatiere $SWAPDEV" >>/root/resumeAus.txt
+fi
+
+exit 0

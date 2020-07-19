@@ -1,0 +1,12 @@
+[Unit]
+Description=Resume-Partition formatieren
+DefaultDependencies=no
+After=local-fs-pre.target
+Before=swap.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/resumeAus
+
+[Install]
+WantedBy=sysinit.target

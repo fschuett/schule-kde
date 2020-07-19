@@ -1,0 +1,15 @@
+
+[Desktop Entry]
+Categories=Math;Education;Science;X-KDE-Edu-Teaching;X-Schulfächer;X-Mathematik;X-Himmelsthür;
+Encoding=UTF-8
+Name=CinqueMinuti
+Exec=wine C:\\\\Programme\\\\CinqueMinuti\\\\cinqueminuti.exe
+Type=Application
+GenericName=CinqueMinuti
+Terminal=false
+Path=/usr/share/schule-wine/drive_c/Programme/CinqueMinuti
+Icon=CinqueMinuti
+X-KDE-StartupNotify=true
+
+InitialPreference=7
+X-Desktop-File-Install-Version=0.18

@@ -1,0 +1,2 @@
+# Der Uhrzugriff ist für den aktuellen Benutzer erlaubt.
+org.freedesktop.timedate1.set-time                              auth_admin_keep:auth_admin_keep:yes

@@ -292,221 +292,23 @@ install -D -m 644 -o root -g root resumeAus.service %{buildroot}/etc/systemd/sys
 install -D -m 700 -o root -g root resumeAus %{buildroot}/sbin/resumeAus
 install -D -m 755 -o root -g root %{name}-systemd-klassenarbeit.conf %{buildroot}/etc/systemd/system/display-manager.service.d/klassenarbeit.conf
 
-%post
-# add application defaults to mimeapps.list
-ML=/etc/xdg/mimeapps.list
-if [ ! -f $ML ]; then
-  touch $ML
-fi
-if ! grep -q '[DefaultApplications]' $ML; then
-  echo '[DefaultApplications]'>>$ML
-fi
-for L in application/ogg=vlc.desktop application/x-shockwave-flash=vlc.desktop audio/m3u=vlc.desktop\
- audio/mp4=vlc.desktop audio/mpeg=vlc.desktop audio/ogg=vlc.desktop audio/vnd.rn-realaudio=vlc.desktop\
- audio/vorbis=vlc.desktop audio/x-flac=vlc.desktop audio/x-flac+ogg=vlc.desktop audio/x-m4b=vlc.desktop\
- audio/x-matroska=vlc.desktop audio/x-mpegurl=vlc.desktop audio/x-ms-wma=vlc.desktop audio/x-oggflac=vlc.desktop\
- audio/x-scpls=vlc.desktop audio/x-speex+ogg=vlc.desktop audio/x-vorbis+ogg=vlc.desktop audio/x-wav=vlc.desktop\
- video/ogg=vlc.desktop video/x-matroska=vlc.desktop video/x-ms-asf=vlc.desktop video/x-ogm+ogg=vlc.desktop\
- video/x-theora=vlc.desktop; do
-  if ! grep -q "$L" $ML; then
-    echo "$L">>$ML
-  fi
-done
+%post -f schule-kde.post
 
-# mime type handling / system icon links and mime database
-/usr/bin/update-mime-database /usr/share/mime
-/usr/bin/update-desktop-database
+%post -f gymhim.post
 
-%post gymhim
-SCHULE=gymhim
-BINDIR=/usr/bin
-[ -e "$BINDIR/schulserver-notification" ] && rm -f "$BINDIR/schulserver-notification"
-[ -e "$BINDIR/schulserver-notification-${SCHULE}" ] && ln -sf "$BINDIR/schulserver-notification-${SCHULE}" "$BINDIR/schulserver-notification"
-ENVDIR=/etc/xdg/plasma-workspace/env
-ENVCONFDIR=/etc/xdg/defaults
-[ -e "$ENVDIR/startkde.schule.sh" ] && rm -f "$ENVDIR/startkde.schule.sh"
-[ -e "$ENVCONFDIR/startkde.${SCHULE}.sh" ] && ln -sf "$ENVCONFDIR/startkde.${SCHULE}.sh" "$ENVDIR/startkde.schule.sh"
-MENUDIR=/etc/xdg/menus/applications-merged
-SCHULEDIR=/usr/share/schule-kde
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-[ -e "$SCHULEDIR/schule-kde-himmelsthuer.menu" ] && ln -s "$SCHULEDIR/schule-kde-himmelsthuer.menu" "$MENUDIR/schule.menu"
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-rm -f $SCHULEDIR/plasma-updates/schule
-ln -sf $SCHULEDIR/plasma-updates/${SCHULE} $SCHULEDIR/plasma-updates/schule
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-    ln -sf $p $PLASMADIR/$f
-done;
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulesrver.png"
-[ -e "$PIXMAPDIR/himmelsthuer.png" ] && ln -sf "$PIXMAPDIR/himmelsthuer.png" "$PIXMAPDIR/schulserver.png"
+%post -f gymhim-netbook.post
 
-%post gymhim-netbook
-SCHULE=gymhim
-ENVDIR=/etc/xdg/plasma-workspace/env
-ENVCONFDIR=/etc/xdg/defaults
-[ -e "$ENVDIR/startkde.schule.sh" ] && rm -f "$ENVDIR/startkde.schule.sh"
-[ -e "$ENVCONFDIR/startkde.${SCHULE}.sh" ] && ln -sf "$ENVCONFDIR/startkde.${SCHULE}.sh" "$ENVDIR/startkde.schule.sh"
-MENUDIR=/etc/xdg/menus/applications-merged
-SCHULEDIR=/usr/share/schule-kde
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-rm -f $SCHULEDIR/plasma-updates/schule
-ln -sf $SCHULEDIR/plasma-updates/${SCHULE}-netbook $SCHULEDIR/plasma-updates/schule
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-    ln -sf $p $PLASMADIR/$f
-done;
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
-[ -e "$PIXMAPDIR/himmelsthuer.png" ] && ln -sf "$PIXMAPDIR/himmelsthuer.png" "$PIXMAPDIR/schulserver.png"
-[ -x /sbin/set_polkit_default_privs ] && /sbin/set_polkit_default_privs
-systemctl enable klassenarbeit.service
-systemctl enable resumeAus.service
-systemctl daemon-reload
+%post -f sas.post
 
-%post sas
-SCHULE=sas
-BINDIR=/usr/bin
-[ -e "$BINDIR/schulserver-notification" ] && rm -f "$BINDIR/schulserver-notification"
-[ -e "$BINDIR/schulserver-notification-${SCHULE}" ] && ln -sf "$BINDIR/schulserver-notification-${SCHULE}" "$BINDIR/schulserver-notification"
-ENVDIR=/etc/xdg/plasma-workspace/env
-ENVCONFDIR=/etc/xdg/defaults
-[ -e "$ENVDIR/startkde.schule.sh" ] && rm -f "$ENVDIR/startkde.schule.sh"
-[ -e "$ENVCONFDIR/startkde.${SCHULE}.sh" ] && ln -sf "$ENVCONFDIR/startkde.${SCHULE}.sh" "$ENVDIR/startkde.schule.sh"
-MENUDIR=/etc/xdg/menus/applications-merged
-SCHULEDIR=/usr/share/schule-kde
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-[ -e "$SCHULEDIR/schule-kde-himmelsthuer.menu" ] && ln -s "$SCHULEDIR/schule-kde-himmelsthuer.menu" "$MENUDIR/schule.menu"
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-rm -f $SCHULEDIR/plasma-updates/schule
-ln -sf $SCHULEDIR/plasma-updates/${SCHULE} $SCHULEDIR/plasma-updates/schule
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-    ln -sf $p $PLASMADIR/$f
-done;
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulesrver.png"
-[ -e "$PIXMAPDIR/himmelsthuer.png" ] && ln -sf "$PIXMAPDIR/himmelsthuer.png" "$PIXMAPDIR/schulserver.png"
+%post -f sas-netbook.post
 
-%post sas-netbook
-SCHULE=sas
-ENVDIR=/etc/xdg/plasma-workspace/env
-ENVCONFDIR=/etc/xdg/defaults
-[ -e "$ENVDIR/startkde.schule.sh" ] && rm -f "$ENVDIR/startkde.schule.sh"
-[ -e "$ENVCONFDIR/startkde.${SCHULE}.sh" ] && ln -sf "$ENVCONFDIR/startkde.${SCHULE}.sh" "$ENVDIR/startkde.schule.sh"
-MENUDIR=/etc/xdg/menus/applications-merged
-SCHULEDIR=/usr/share/schule-kde
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-rm -f $SCHULEDIR/plasma-updates/schule
-ln -sf $SCHULEDIR/plasma-updates/${SCHULE}-netbook $SCHULEDIR/plasma-updates/schule
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-    ln -sf $p $PLASMADIR/$f
-done;
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
-[ -e "$PIXMAPDIR/himmelsthuer.png" ] && ln -sf "$PIXMAPDIR/himmelsthuer.png" "$PIXMAPDIR/schulserver.png"
-[ -x /sbin/set_polkit_default_privs ] && /sbin/set_polkit_default_privs
-systemctl enable klassenarbeit.service
-systemctl enable resumeAus.service
-systemctl daemon-reload
+%preun -f gymhim.preun
 
+%preun -f gymhim-netbook.preun
 
-%preun
-if [ $1 -gt 0 ]; then
-  exit 0;
-fi
-# mime type handling / remove system icon links
+%preun -f sas.preun
 
-%preun gymhim
-if [ $1 -gt 0 ]; then
-  exit 0;
-fi
-BINDIR=/usr/bin
-[ -e "$BINDIR/schulserver-notification" ] && rm -f "$BINDIR/schulserver-notification"
-ENVDIR=/etc/xdg/plasma-workspace/env
-FILE=startkde.schule.sh
-[ -e "$ENVDIR/$FILE" ] && rm -f "$ENVDIR/$FILE"
-SCHULEDIR=/usr/share/schule-kde
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-done;
-rm -f $SCHULEDIR/plasma-updates/schule
-MENUDIR=/etc/xdg/menus/applications-merged
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
-
-%preun gymhim-netbook
-if [ $1 -gt 0 ]; then
-  exit 0;
-fi
-ENVDIR=/etc/xdg/plasma-workspace/env
-FILE=startkde.schule.sh
-[ -e "$ENVDIR/$FILE" ] && rm -f "$ENVDIR/$FILE"
-SCHULEDIR=/usr/share/schule-kde
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-done;
-rm -f $SCHULEDIR/plasma-updates/schule
-MENUDIR=/etc/xdg/menus/applications-merged
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
-systemctl disable klassenarbeit.service
-systemctl disable resumeAus.service
-
-%preun sas
-if [ $1 -gt 0 ]; then
-  exit 0;
-fi
-BINDIR=/usr/bin
-[ -e "$BINDIR/schulserver-notification" ] && rm -f "$BINDIR/schulserver-notification"
-ENVDIR=/etc/xdg/plasma-workspace/env
-FILE=startkde.schule.sh
-[ -e "$ENVDIR/$FILE" ] && rm -f "$ENVDIR/$FILE"
-SCHULEDIR=/usr/share/schule-kde
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-done;
-rm -f $SCHULEDIR/plasma-updates/schule
-MENUDIR=/etc/xdg/menus/applications-merged
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
-
-%preun sas-netbook
-if [ $1 -gt 0 ]; then
-  exit 0;
-fi
-ENVDIR=/etc/xdg/plasma-workspace/env
-FILE=startkde.schule.sh
-[ -e "$ENVDIR/$FILE" ] && rm -f "$ENVDIR/$FILE"
-SCHULEDIR=/usr/share/schule-kde
-PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
-for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
-    f=$(basename $p)
-    rm -f $PLASMADIR/$f
-done;
-rm -f $SCHULEDIR/plasma-updates/schule
-MENUDIR=/etc/xdg/menus/applications-merged
-[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
-PIXMAPDIR=/usr/share/icons
-[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
-systemctl disable klassenarbeit.service
-systemctl disable resumeAus.service
+%preun -f sas-netbook.preun
 
 %postun
 /usr/bin/update-mime-database /usr/share/mime

@@ -1,0 +1,23 @@
+# add application defaults to mimeapps.list
+ML=/etc/xdg/mimeapps.list
+if [ ! -f $ML ]; then
+  touch $ML
+fi
+if ! grep -q '[DefaultApplications]' $ML; then
+  echo '[DefaultApplications]'>>$ML
+fi
+for L in application/ogg=vlc.desktop application/x-shockwave-flash=vlc.desktop audio/m3u=vlc.desktop\
+ audio/mp4=vlc.desktop audio/mpeg=vlc.desktop audio/ogg=vlc.desktop audio/vnd.rn-realaudio=vlc.desktop\
+ audio/vorbis=vlc.desktop audio/x-flac=vlc.desktop audio/x-flac+ogg=vlc.desktop audio/x-m4b=vlc.desktop\
+ audio/x-matroska=vlc.desktop audio/x-mpegurl=vlc.desktop audio/x-ms-wma=vlc.desktop audio/x-oggflac=vlc.desktop\
+ audio/x-scpls=vlc.desktop audio/x-speex+ogg=vlc.desktop audio/x-vorbis+ogg=vlc.desktop audio/x-wav=vlc.desktop\
+ video/ogg=vlc.desktop video/x-matroska=vlc.desktop video/x-ms-asf=vlc.desktop video/x-ogm+ogg=vlc.desktop\
+ video/x-theora=vlc.desktop; do
+  if ! grep -q "$L" $ML; then
+    echo "$L">>$ML
+  fi
+done
+
+# mime type handling / system icon links and mime database
+/usr/bin/update-mime-database /usr/share/mime
+/usr/bin/update-desktop-database

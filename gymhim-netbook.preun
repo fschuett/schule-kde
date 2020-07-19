@@ -1,0 +1,19 @@
+if [ $1 -gt 0 ]; then
+  exit 0;
+fi
+ENVDIR=/etc/xdg/plasma-workspace/env
+FILE=startkde.schule.sh
+[ -e "$ENVDIR/$FILE" ] && rm -f "$ENVDIR/$FILE"
+SCHULEDIR=/usr/share/schule-kde
+PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
+for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
+    f=$(basename $p)
+    rm -f $PLASMADIR/$f
+done;
+rm -f $SCHULEDIR/plasma-updates/schule
+MENUDIR=/etc/xdg/menus/applications-merged
+[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
+PIXMAPDIR=/usr/share/icons
+[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
+systemctl disable klassenarbeit.service
+systemctl disable resumeAus.service

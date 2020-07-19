@@ -1,0 +1,23 @@
+SCHULE=sas
+BINDIR=/usr/bin
+[ -e "$BINDIR/schulserver-notification" ] && rm -f "$BINDIR/schulserver-notification"
+[ -e "$BINDIR/schulserver-notification-${SCHULE}" ] && ln -sf "$BINDIR/schulserver-notification-${SCHULE}" "$BINDIR/schulserver-notification"
+ENVDIR=/etc/xdg/plasma-workspace/env
+ENVCONFDIR=/etc/xdg/defaults
+[ -e "$ENVDIR/startkde.schule.sh" ] && rm -f "$ENVDIR/startkde.schule.sh"
+[ -e "$ENVCONFDIR/startkde.${SCHULE}.sh" ] && ln -sf "$ENVCONFDIR/startkde.${SCHULE}.sh" "$ENVDIR/startkde.schule.sh"
+MENUDIR=/etc/xdg/menus/applications-merged
+SCHULEDIR=/usr/share/schule-kde
+[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
+[ -e "$SCHULEDIR/schule-kde-himmelsthuer.menu" ] && ln -s "$SCHULEDIR/schule-kde-himmelsthuer.menu" "$MENUDIR/schule.menu"
+PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
+rm -f $SCHULEDIR/plasma-updates/schule
+ln -sf $SCHULEDIR/plasma-updates/${SCHULE} $SCHULEDIR/plasma-updates/schule
+for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
+    f=$(basename $p)
+    rm -f $PLASMADIR/$f
+    ln -sf $p $PLASMADIR/$f
+done;
+PIXMAPDIR=/usr/share/icons
+[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulesrver.png"
+[ -e "$PIXMAPDIR/himmelsthuer.png" ] && ln -sf "$PIXMAPDIR/himmelsthuer.png" "$PIXMAPDIR/schulserver.png"

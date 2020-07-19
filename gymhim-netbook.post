@@ -1,0 +1,23 @@
+SCHULE=gymhim
+ENVDIR=/etc/xdg/plasma-workspace/env
+ENVCONFDIR=/etc/xdg/defaults
+[ -e "$ENVDIR/startkde.schule.sh" ] && rm -f "$ENVDIR/startkde.schule.sh"
+[ -e "$ENVCONFDIR/startkde.${SCHULE}.sh" ] && ln -sf "$ENVCONFDIR/startkde.${SCHULE}.sh" "$ENVDIR/startkde.schule.sh"
+MENUDIR=/etc/xdg/menus/applications-merged
+SCHULEDIR=/usr/share/schule-kde
+[ -e "$MENUDIR/schule.menu" ] && rm -f "$MENUDIR/schule.menu"
+PLASMADIR=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates
+rm -f $SCHULEDIR/plasma-updates/schule
+ln -sf $SCHULEDIR/plasma-updates/${SCHULE}-netbook $SCHULEDIR/plasma-updates/schule
+for p in $(find -L $SCHULEDIR/plasma-updates/{all,schule}/*.js); do
+    f=$(basename $p)
+    rm -f $PLASMADIR/$f
+    ln -sf $p $PLASMADIR/$f
+done;
+PIXMAPDIR=/usr/share/icons
+[ -e "$PIXMAPDIR/schulserver.png" ] && rm -f "$PIXMAPDIR/schulserver.png"
+[ -e "$PIXMAPDIR/himmelsthuer.png" ] && ln -sf "$PIXMAPDIR/himmelsthuer.png" "$PIXMAPDIR/schulserver.png"
+[ -x /sbin/set_polkit_default_privs ] && /sbin/set_polkit_default_privs
+systemctl enable klassenarbeit.service
+systemctl enable resumeAus.service
+systemctl daemon-reload

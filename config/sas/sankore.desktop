@@ -1,14 +1,13 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Open-Sankore
-GenericName=Open-Sankore
-Comment=Software to create presentations for interactive whiteboard (TNI)
-Comment[fr]=Logiciel de création de présentations pour tableau numérique interactif (TNI)
-Exec=/usr/lib64/OpenSankore/run.sh "%f"
-Icon=sankore
+Name=OpenBoard
+GenericName=OpenBoard
+Comment=Interactive whiteboard for schools and universities
+Exec=openboard
+Icon=ch.openboard.OpenBoard
 StartupNotify=true
 Terminal=false
 Type=Application
-MimeType=application/x-open-sankore;
+MimeType=application/x-OpenBoard;
 Categories=Qt;KDE;Education;Engineering;
-X-SuSE-translate=false
+

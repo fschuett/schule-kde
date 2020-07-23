@@ -127,6 +127,7 @@ Requires: MozillaFirefox
 Requires: musescore
 Requires: musikus
 Requires: netbeans_de
+Requires: OpenBoard
 Requires: okteta
 Requires: okular
 Requires: osp_datatool
@@ -151,6 +152,7 @@ kde installation files for a school. It provides a enhanced desktop.
 Summary:      kde Installation für das Gymnasium Himmelsthür
 BuildArch:    noarch
 Requires:     schule-kde
+Conflicts:    schule-kde-gymhim-netbook schule-kde-sas schule-kde-sas-netbook
 
 %description gymhim
 KDE Installationsdateien für das Gymnasium Himmelsthür. Es enthält ein Menü
@@ -160,6 +162,7 @@ und einige Desktop-Symbole.
 Summary:      kde Installation für das Gymnasium Himmelsthür auf einem Netbook
 BuildArch:    noarch
 Requires:     schule-kde
+Conflicts:    schule-kde-gymhim schule-kde-sas schule-kde-sas-netbook
 
 %description gymhim-netbook
 KDE Installationsdateien für das Gymnasium Himmelsthür auf einem Netbook. Es
@@ -170,6 +173,7 @@ Summary:      kde Installation für die Sankt-Ansgar-Schule
 BuildArch:    noarch
 Requires:     schule-kde
 BuildRequires: schule-wine-derive
+Conflicts:    schule-kde-gymhim schule-kde-gymhim-netbook schule-kde-sas-netbook
 
 %description sas
 KDE Installationsdateien für die Sankt-Ansgar-Schule. Es enthält ein Menü
@@ -179,6 +183,7 @@ und einige Desktop-Symbole.
 Summary:      kde Installation für die Sankt-Ansgar-Schule auf einem Netbook
 BuildArch:    noarch
 Requires:     schule-kde
+Conflicts:    schule-kde-gymhim schule-kde-gymhim-netbook schule-kde-sas
 
 %description sas-netbook
 KDE Installationsdateien für die Sankt-Ansgar-Schule auf einem Netbook. Es
@@ -382,6 +387,7 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/gymhim/OSS-Admin.desktop
 /etc/xdg/defaults/gymhim/Webmail.desktop
 /etc/xdg/defaults/gymhim/k4dirstat.desktop
+/etc/xdg/defaults/gymhim/ch.openboard.OpenBoard.desktop
 /etc/xdg/defaults/gymhim/CinqueMinuti.desktop
 /etc/xdg/defaults/gymhim/geogebra.desktop
 /etc/xdg/defaults/gymhim/gimp.desktop
@@ -391,7 +397,6 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/gymhim/org.kde.spectacle.desktop
 /etc/xdg/defaults/gymhim/org.kde.kwrite.desktop
 /etc/xdg/defaults/gymhim/org.kde.parley.desktop
-/etc/xdg/defaults/gymhim/sankore.desktop
 /etc/xdg/defaults/gymhim/smarttech-notebook.desktop
 /usr/share/schule-kde/schule-kde-himmelsthuer.menu
 /usr/share/%{name}/plasma-updates/gymhim
@@ -417,6 +422,7 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/gymhim/OSS-Admin.desktop
 /etc/xdg/defaults/gymhim/Webmail.desktop
 /etc/xdg/defaults/gymhim/k4dirstat.desktop
+/etc/xdg/defaults/gymhim/ch.openboard.OpenBoard.desktop
 /etc/xdg/defaults/gymhim/CinqueMinuti.desktop
 /etc/xdg/defaults/gymhim/geogebra.desktop
 /etc/xdg/defaults/gymhim/gimp.desktop
@@ -426,7 +432,6 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/gymhim/org.kde.spectacle.desktop
 /etc/xdg/defaults/gymhim/org.kde.kwrite.desktop
 /etc/xdg/defaults/gymhim/org.kde.parley.desktop
-/etc/xdg/defaults/gymhim/sankore.desktop
 /etc/xdg/defaults/gymhim/smarttech-notebook.desktop
 /etc/xdg/defaults/gymhim/xrandr-clone.desktop
 /etc/xdg/defaults/gymhim/xrandr-extend.desktop
@@ -453,6 +458,7 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/sas/OSS-Admin.desktop
 /etc/xdg/defaults/sas/Webmail.desktop
 /etc/xdg/defaults/sas/k4dirstat.desktop
+/etc/xdg/defaults/sas/ch.openboard.OpenBoard.desktop
 /etc/xdg/defaults/sas/CinqueMinuti.desktop
 /etc/xdg/defaults/sas/geogebra.desktop
 /etc/xdg/defaults/sas/gimp.desktop
@@ -462,7 +468,6 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/sas/org.kde.spectacle.desktop
 /etc/xdg/defaults/sas/org.kde.kwrite.desktop
 /etc/xdg/defaults/sas/org.kde.parley.desktop
-/etc/xdg/defaults/sas/sankore.desktop
 /etc/xdg/defaults/sas/smarttech-notebook.desktop
 /usr/share/schule-kde/schule-kde-sas.menu
 /usr/share/%{name}/plasma-updates/sas
@@ -492,6 +497,7 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/sas/OSS-Admin.desktop
 /etc/xdg/defaults/sas/Webmail.desktop
 /etc/xdg/defaults/sas/k4dirstat.desktop
+/etc/xdg/defaults/sas/ch.openboard.OpenBoard.desktop
 /etc/xdg/defaults/sas/CinqueMinuti.desktop
 /etc/xdg/defaults/sas/geogebra.desktop
 /etc/xdg/defaults/sas/gimp.desktop
@@ -501,7 +507,6 @@ rm -rf %{buildroot}
 /etc/xdg/defaults/sas/org.kde.spectacle.desktop
 /etc/xdg/defaults/sas/org.kde.kwrite.desktop
 /etc/xdg/defaults/sas/org.kde.parley.desktop
-/etc/xdg/defaults/sas/sankore.desktop
 /etc/xdg/defaults/sas/smarttech-notebook.desktop
 /etc/xdg/defaults/sas/xrandr-clone.desktop
 /etc/xdg/defaults/sas/xrandr-extend.desktop

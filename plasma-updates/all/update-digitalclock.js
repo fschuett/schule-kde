@@ -6,7 +6,7 @@ panel.forEach(function(p,i,par)
     {
         if( w.type == "org.kde.plasma.digitalclock" )
         {
-            w.currentConfigGroup = new Array("Configuration","Appearance");
+            w.currentConfigGroup = new Array("Appearance");
             w.writeConfig("showDate","true");
             w.reloadConfig();
         }

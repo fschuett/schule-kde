@@ -190,7 +190,7 @@ KDE Installationsdateien für die Sankt-Ansgar-Schule auf einem Netbook. Es
 enthält ein Sal-Menü und einige Desktop-Symbole.
 
 %prep
-%setup -q
+%setup -q -n schule-kde
 
 %build
 # 
@@ -299,21 +299,21 @@ install -D -m 755 -o root -g root %{name}-systemd-klassenarbeit.conf %{buildroot
 
 %post -f schule-kde.post
 
-%post -f gymhim.post
+%post gymhim -f gymhim.post
 
-%post -f gymhim-netbook.post
+%post gymhim-netbook -f gymhim-netbook.post
 
-%post -f sas.post
+%post sas -f sas.post
 
-%post -f sas-netbook.post
+%post sas-netbook -f sas-netbook.post
 
-%preun -f gymhim.preun
+%preun gymhim -f gymhim.preun
 
-%preun -f gymhim-netbook.preun
+%preun gymhim-netbook -f gymhim-netbook.preun
 
-%preun -f sas.preun
+%preun sas -f sas.preun
 
-%preun -f sas-netbook.preun
+%preun sas-netbook -f sas-netbook.preun
 
 %postun
 /usr/bin/update-mime-database /usr/share/mime
@@ -449,7 +449,8 @@ rm -rf %{buildroot}
 /etc/profile.d/schule.csh
 /usr/share/desktop-directories/sas.directory
 %attr(755,root,root) /etc/xdg/defaults/startkde.sas.sh
-/etc/xdg/defaults/sas/OSS.desktop
+/etc/xdg/defaults/sas/Ausgabe_vereinheitlichen.desktop
+/etc/xdg/defaults/sas/mimio-notebook.desktop
 /etc/xdg/defaults/sas/Dokuwiki.desktop
 /etc/xdg/defaults/sas/Moodle.desktop
 /etc/xdg/defaults/sas/firefox.desktop
@@ -488,7 +489,8 @@ rm -rf %{buildroot}
 %attr(755,root,root) /etc/xdg/defaults/startkde.sas.sh
 /usr/share/desktop-directories/sas-*.directory
 /usr/share/icons/sas-*.png
-/etc/xdg/defaults/sas/OSS.desktop
+/etc/xdg/defaults/sas/Ausgabe_vereinheitlichen.desktop
+/etc/xdg/defaults/sas/mimio-notebook.desktop
 /etc/xdg/defaults/sas/Dokuwiki.desktop
 /etc/xdg/defaults/sas/Moodle.desktop
 /etc/xdg/defaults/sas/firefox.desktop

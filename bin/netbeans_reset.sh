@@ -33,7 +33,7 @@ for d in $DIRS_TO_REMOVE; do
   fi
 done;
 
-echo "Die Office-Standardwerte wurden wieder hergestellt.";
+echo "Die Netbeans-Standardwerte wurden wieder hergestellt.";
 
 cd "$CURRENT"
 

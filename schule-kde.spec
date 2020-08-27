@@ -66,7 +66,7 @@ BuildRequires: marble
 BuildRequires: MozillaFirefox
 BuildRequires: musescore
 BuildRequires: musikus
-BuildRequires: netbeans_de
+BuildRequires: netbeans
 BuildRequires: okteta
 BuildRequires: okular
 BuildRequires: osp_datatool
@@ -126,7 +126,7 @@ Requires: marble
 Requires: MozillaFirefox
 Requires: musescore
 Requires: musikus
-Requires: netbeans_de
+Requires: netbeans
 Requires: OpenBoard
 Requires: okteta
 Requires: okular

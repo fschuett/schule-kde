@@ -72,7 +72,7 @@ fi
 echo "Bitte melden Sie sich mit Benutzername: schueler Passwort: schueler neu an. Ich melde Sie jetzt ab.";
 sleep 5
 
-killall ksmserver
+qdbus org.kde.ksmserver /KSMServer logout 0 0 0
 
 cd "$CURRENT"
 

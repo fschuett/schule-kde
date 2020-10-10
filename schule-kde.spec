@@ -2,7 +2,7 @@ Name:         schule-kde
 Summary:      KDE installation files and menu for a school
 BuildArch:    noarch
 Version:      5.18
-Release:      1
+Release:      2
 License:      GPL
 Group:        application
 Source:       %{name}-%{version}.tar.gz

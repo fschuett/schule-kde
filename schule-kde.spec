@@ -2,12 +2,13 @@ Name:         schule-kde
 Summary:      KDE installation files and menu for a school
 BuildArch:    noarch
 Version:      5.18
-Release:      2
+Release:      3
 License:      GPL
 Group:        application
 Source:       %{name}-%{version}.tar.gz
 Packager:     fschuett
 Distribution: openSUSE Linux
+Vendor:       gymhim
 Prefix:       /usr
 Url:          http://www.gymnasium-himmelsthuer.de
 BuildRequires:     desktop-file-utils shared-mime-info kdebase4-runtime plasma5-workspace-branding-openSUSE

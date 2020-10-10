@@ -6,22 +6,6 @@ Release:      2
 License:      GPL
 Group:        application
 Source:       %{name}-%{version}.tar.gz
-Source1:      %{name}-himmelsthuer.menu
-Source2:      %{name}-sas.menu
-Source61:     %{name}-himmelsthuer-netbook.menu
-Source62:     %{name}-sas-netbook.menu
-Source7:      schulserver-autostart.desktop
-Source8:      %{name}-UhrzugriffErlauben
-Source9:      %{name}-akonadiserverrc
-Source13:     schule.sh
-Source14:     schule.csh
-Source20:     klassenarbeit.service
-Source21:     klassenarbeitAnAus
-Source22:     01_gymhim
-Source23:     resumeAus.service
-Source24:     resumeAus
-Source25:     01_sas
-Source26:     %{name}-systemd-klassenarbeit.conf
 Packager:     fschuett
 Distribution: openSUSE Linux
 Prefix:       /usr

@@ -2,31 +2,16 @@ Name:         schule-kde
 Summary:      KDE installation files and menu for a school
 BuildArch:    noarch
 Version:      5.18
-Release:      1
+Release:      4
 License:      GPL
 Group:        application
 Source:       %{name}-%{version}.tar.gz
-Source1:      %{name}-himmelsthuer.menu
-Source2:      %{name}-sas.menu
-Source61:     %{name}-himmelsthuer-netbook.menu
-Source62:     %{name}-sas-netbook.menu
-Source7:      schulserver-autostart.desktop
-Source8:      %{name}-UhrzugriffErlauben
-Source9:      %{name}-akonadiserverrc
-Source13:     schule.sh
-Source14:     schule.csh
-Source20:     klassenarbeit.service
-Source21:     klassenarbeitAnAus
-Source22:     01_gymhim
-Source23:     resumeAus.service
-Source24:     resumeAus
-Source25:     01_sas
-Source26:     %{name}-systemd-klassenarbeit.conf
 Packager:     fschuett
 Distribution: openSUSE Linux
+Vendor:       gymhim
 Prefix:       /usr
 Url:          http://www.gymnasium-himmelsthuer.de
-BuildRequires:     desktop-file-utils shared-mime-info kdebase4-runtime plasma5-workspace-branding-openSUSE
+BuildRequires:     desktop-file-utils shared-mime-info kdebase4-runtime plasma5-workspace-branding-openSUSE gconf2
 # menu entry build requirements
 BuildRequires: ark
 BuildRequires: audacity
@@ -85,7 +70,7 @@ BuildRequires: vlc
 BuildRequires: vym
 BuildRequires: wine
 
-Requires:     polkit-default-privs kdebase4-runtime plasma5-workspace-branding-openSUSE desktop-file-utils shared-mime-info systemd
+Requires:     polkit-default-privs kdebase4-runtime plasma5-workspace-branding-openSUSE desktop-file-utils shared-mime-info systemd gconf2
 # menue entry requirements
 Requires: ark
 Requires: audacity
@@ -297,6 +282,10 @@ install -D -m 644 -o root -g root resumeAus.service %{buildroot}/etc/systemd/sys
 install -D -m 700 -o root -g root resumeAus %{buildroot}/sbin/resumeAus
 install -D -m 755 -o root -g root %{name}-systemd-klassenarbeit.conf %{buildroot}/etc/systemd/system/display-manager.service.d/klassenarbeit.conf
 
+#pulse gconf
+mkdir -p %{buildroot}/etc/gconf/gconf.xml.mandatory
+cp -aR gconf/* %{buildroot}/etc/gconf/gconf.xml.mandatory
+
 %post -f schule-kde.post
 
 %post gymhim -f gymhim.post
@@ -354,6 +343,9 @@ rm -rf %{buildroot}
 %dir /usr/share/%{name}
 %dir /usr/share/%{name}/plasma-updates
 /usr/share/%{name}/plasma-updates/all
+%dir /etc/gconf
+%dir /etc/gconf/gconf.xml.mandatory
+/etc/gconf/gconf.xml.mandatory/system
 %defattr(755,root,root,0755) 
 /usr/bin/winestartfile
 /usr/bin/schulserver-notification-gymhim

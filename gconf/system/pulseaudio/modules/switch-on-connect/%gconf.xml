@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="enabled" mtime="1604935926" type="bool" value="true"/>
+	<entry name="name0" mtime="1604935926" type="string">
+		<stringvalue>module-switch-on-connect</stringvalue>
+	</entry>
+	<entry name="locked" mtime="1604935926" type="bool" value="false"/>
+</gconf>

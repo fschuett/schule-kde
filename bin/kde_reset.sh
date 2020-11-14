@@ -39,6 +39,10 @@ cd $HOME
 for d in $DIRS_TO_CLEAN; do
   if [ -e "$d" -a -d "$d" ]; then
     (
+      if [ ! -e "backup" ]; then
+        mkdir -p backup
+      fi
+      tar xcf "backup/${d#.}.tar.gz" $d
       cd $d;
       if [ "`pwd`" = "$HOME/$d" ]; then
 	echo "Ich leere das Verzeichnis $HOME/$d";
@@ -74,7 +78,7 @@ fi
 echo "Bitte melden Sie sich neu an. Ich melde Sie jetzt ab.";
 sleep 5
 
-killall ksmserver
+qdbus org.kde.ksmserver /KSMServer logout 0 0 0
 
 cd "$CURRENT"
 

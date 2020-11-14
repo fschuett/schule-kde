@@ -9,7 +9,7 @@ if [ "$USER" = "root" -o 0`id -u` = 0 ]; then
 fi
 
 DIR=`dirname $0`
-PROGNR=$(kdialog --radiolist "Zurücksetzen von" 1 "KDE" on 2 "KDE-Arbeitsfläche" off 3 "Firefox" off 4 "JBuilder" off 5 "OpenOffice" off 6 "Wine" off 7 "SMART Software" off 8 "Alle" off)
+PROGNR=$(kdialog --radiolist "Zurücksetzen von" 1 "KDE" on 2 "KDE-Arbeitsfläche" off 3 "Firefox" off 4 "Netbeans" off 5 "LibreOffice" off 6 "Wine" off 7 "SMART Software" off 8 "Alle" off)
 
 if [ $? != 0 ]; then
     echo "Abbrechen"
@@ -58,12 +58,12 @@ case "$PROGNR" in
 	
     8)
 	$DIR/firefox_reset.sh
-	$DIR/jbuilder_reset.sh
+	$DIR/netbeans_reset.sh
 	$DIR/office_reset.sh
 	$DIR/wine_reset.sh
 	$DIR/smartnotebook_reset.sh
 	$DIR/kde_reset.sh
-	ERGEBNIS="KDE, Arbeitsfläche, Firefox, JBuilder, SMART Software und Office zurückgesetzt";
+	ERGEBNIS="KDE, Arbeitsfläche, Firefox, Netbeans, SMART Software und Office zurückgesetzt";
 	kdialog --title "Alles zurücksetzen" --passivepopup "$ERGEBNIS"
 	;;
 esac

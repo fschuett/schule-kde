@@ -8,7 +8,7 @@ if [ "$USER" = "root" -o 0`id -u` = 0 ]; then
     exit;
 fi
 
-DIRS_TO_REMOVE=".netbeans"
+DIRS_TO_REMOVE=".netbeans .cache/netbeans"
 
 CURRENT=`pwd`
 

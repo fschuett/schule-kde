@@ -1,5 +1,5 @@
 audacity.desktop:Categories=X-Schulfächer;X-Musik;
-avidemux-qt4.desktop:Categories=X-Videobearbeitung;X-Schulfächer;X-Kunst;
+avidemux3-qt5.desktop:Categories=X-Videobearbeitung;X-Schulfächer;X-Kunst;
 base.desktop:Categories=X-Datenbank;
 blender.desktop:Categories=X-Schulfächer;X-Kunst;X-Informatik;X-Bildbearbeitung;
 calc.desktop:Categories=X-Tabellenkalkulation;

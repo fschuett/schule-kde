@@ -15,7 +15,7 @@ BuildRequires:     desktop-file-utils shared-mime-info kdebase4-runtime plasma5-
 # menu entry build requirements
 BuildRequires: ark
 BuildRequires: audacity
-BuildRequires: avidemux-qt
+BuildRequires: avidemux3-qt5
 BuildRequires: blender
 BuildRequires: calibre
 BuildRequires: CinqueMinuti
@@ -74,7 +74,7 @@ Requires:     polkit-default-privs kdebase4-runtime plasma5-workspace-branding-o
 # menue entry requirements
 Requires: ark
 Requires: audacity
-Requires: avidemux-qt
+Requires: avidemux3-qt5
 Requires: blender
 Requires: calibre
 Requires: CinqueMinuti

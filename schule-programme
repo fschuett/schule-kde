@@ -1,5 +1,5 @@
 audacity.desktop:Categories=X-Schulfächer;X-Musik;
-avidemux3-qt5.desktop:Categories=X-Videobearbeitung;X-Schulfächer;X-Kunst;
+org.avidemux.Avidemux.desktop:Categories=X-Videobearbeitung;X-Schulfächer;X-Kunst;
 base.desktop:Categories=X-Datenbank;
 blender.desktop:Categories=X-Schulfächer;X-Kunst;X-Informatik;X-Bildbearbeitung;
 calc.desktop:Categories=X-Tabellenkalkulation;
@@ -14,7 +14,7 @@ ghmessen.desktop:Categories=X-Schulfächer;X-Physik;X-Chemie;X-Biologie;
 gimp.desktop:Categories=X-Schulfächer;X-Kunst;X-Informatik;X-Bildbearbeitung;
 imagej.desktop:Categories=X-Schulfächer;X-Physik;X-Bildbearbeitung;
 impress.desktop:Categories=X-Präsentation;
-inkscape.desktop:Categories=X-Schulfächer;X-Kunst;X-Informatik;
+org.inkscape.Inkscape.desktop:Categories=X-Schulfächer;X-Kunst;X-Informatik;
 k4dirstat.desktop:Categories=X-Zubehör;
 konqbrowser.desktop:Categories=X-Internet;
 lejos-tutorial.desktop:Categories=X-Schulfächer;X-Informatik;

@@ -2,7 +2,7 @@ Name:         schule-kde
 Summary:      KDE installation files and menu for a school
 BuildArch:    noarch
 Version:      5.18
-Release:      4
+Release:      5
 License:      GPL
 Group:        application
 Source:       %{name}-%{version}.tar.gz
@@ -11,7 +11,7 @@ Distribution: openSUSE Linux
 Vendor:       gymhim
 Prefix:       /usr
 Url:          http://www.gymnasium-himmelsthuer.de
-BuildRequires:     desktop-file-utils shared-mime-info kdebase4-runtime plasma5-workspace-branding-openSUSE gconf2
+BuildRequires:     desktop-file-utils shared-mime-info plasma5-workspace-branding-openSUSE gconf2
 # menu entry build requirements
 BuildRequires: ark
 BuildRequires: audacity
@@ -70,7 +70,7 @@ BuildRequires: vlc
 BuildRequires: vym
 BuildRequires: wine
 
-Requires:     polkit-default-privs kdebase4-runtime plasma5-workspace-branding-openSUSE desktop-file-utils shared-mime-info systemd gconf2
+Requires:     polkit-default-privs plasma5-workspace-branding-openSUSE desktop-file-utils shared-mime-info systemd gconf2
 # menue entry requirements
 Requires: ark
 Requires: audacity
@@ -192,7 +192,7 @@ if test -z "${SCHULE}" -o -z "${VERZEICHNIS}" -o -z "${KATEGORIE}"; then
     return
 fi
 while IFS=":" read name categoriesline; do
-    file=`find /usr/share/applications /usr/share/mimelnk \
+    file=`find /usr/share/applications \
       -name 'himmelsthuer' -prune -o -name 'sas' -prune -o -type f -name $name -print |sed 1q`;
     if [ -z "$file" ]; then
 	echo ">>>>%{name} Build error: ${name}|${categoriesline} nicht gefunden. Abhängigkeiten prüfen!<<<<" >>errors.log
